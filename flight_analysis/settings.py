@@ -179,6 +179,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django_extensions',
+    'flight_analysis',
     # ----------------------------
     'users',
     # ----------------------------
