@@ -4,3 +4,4 @@ django-extensions
 IPython
 psycopg2
 environs
+django-import-export

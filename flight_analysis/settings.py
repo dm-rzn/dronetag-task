@@ -179,6 +179,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django_extensions',
+    'import_export',
     'flight_analysis',
     # ----------------------------
     'users',
@@ -238,3 +239,15 @@ LOGGING = {
         },
     }
 }
+
+
+#######################################################################################################################
+#
+#
+#                                                   Import export
+#
+#
+#######################################################################################################################
+from import_export.formats.base_formats import CSV  # noqa: E402
+
+IMPORT_EXPORT_FORMATS = [CSV]
