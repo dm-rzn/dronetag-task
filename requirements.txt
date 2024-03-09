@@ -5,3 +5,4 @@ IPython
 psycopg2
 environs
 django-import-export
+python-dateutil

@@ -2,6 +2,9 @@
 from import_export import resources
 from import_export.fields import Field
 
+# widgets
+from utils.data_import.widgets import DateTimeUtilWidget
+
 # model
 from .models import (
     TelemetryDatapoint,
@@ -11,8 +14,8 @@ from .models import (
 class TelemetryDatapointResource(resources.ModelResource):
     # let's be explicit about every single field
     external_id = Field(attribute='external_id', column_name='id')
-    time = Field(attribute='time', column_name='time')
-    time_received = Field(attribute='time_received', column_name='time_received')
+    time = Field(attribute='time', column_name='time', widget=DateTimeUtilWidget())
+    time_received = Field(attribute='time_received', column_name='time_received', widget=DateTimeUtilWidget())
     latitude = Field(attribute='latitude', column_name='latitude')
     longitude = Field(attribute='longitude', column_name='longitude')
     altitude_m = Field(attribute='altitude_m', column_name='altitude')
