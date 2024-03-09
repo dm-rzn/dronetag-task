@@ -1,0 +1,27 @@
+FROM python:3.11-slim
+
+USER root
+
+WORKDIR /app
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# install everything needed
+RUN apt update && apt upgrade -y \
+    && apt install -y gettext procps build-essential libpq-dev \
+    && apt-get autoremove \
+    && apt-get clean -y
+
+# copy project
+COPY . .
+
+# install dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+# run project
+RUN chmod +x ci_scripts/python-entrypoint.local.sh
+
+ENTRYPOINT ["ci_scripts/python-entrypoint.local.sh"]
