@@ -182,6 +182,7 @@ INSTALLED_APPS = [
     'flight_analysis',
     # ----------------------------
     'users',
+    'common',
     'telemetry',
     # ----------------------------
 ]
