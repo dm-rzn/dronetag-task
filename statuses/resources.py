@@ -6,11 +6,12 @@ from import_export.fields import Field
 from utils.data_import.widgets import DateTimeUtilWidget
 
 # services
-from statuses.services import create_dry_import_dataset
+from utils.data_import.services import create_dry_import_dataset
 
 # model
 from .models import (
     StatusDatapoint,
+    StatusDataset,
 )
 
 
@@ -46,7 +47,7 @@ class StatusDatapointResource(resources.ModelResource):
     def before_import(self, dataset, using_transactions, dry_run, **kwargs):
         # for dry run it is necessary to create dataset for the validation to pass
         if dry_run and self.status_dataset is None:
-            self.status_dataset = create_dry_import_dataset(self.user)
+            self.status_dataset = create_dry_import_dataset(self.user, StatusDataset)
 
     def before_save_instance(self, instance, using_transactions, dry_run):
         instance.dataset = self.status_dataset
