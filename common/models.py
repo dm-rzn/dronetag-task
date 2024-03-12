@@ -12,14 +12,10 @@ def resolve_data_path(instance, filename):
     return f'{instance._meta.model_name}s/{filename}'
 
 
-class Dataset(models.Model):
+class Base(models.Model):
     name = models.CharField(
         max_length=200,
         verbose_name=_('Name'),
-    )
-    data = models.FileField(
-        upload_to=resolve_data_path,
-        verbose_name=_('Raw data'),
     )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -37,3 +33,13 @@ class Dataset(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Dataset(Base, models.Model):
+    data = models.FileField(
+        upload_to=resolve_data_path,
+        verbose_name=_('Raw data'),
+    )
+
+    class Meta:
+        abstract = True

@@ -186,6 +186,7 @@ INSTALLED_APPS = [
     'common',
     'telemetry',
     'statuses',
+    'analytics',
     # ----------------------------
 ]
 
