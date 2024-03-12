@@ -1,8 +1,7 @@
 # models
 from django.db import models
 
-# conf
-from django.conf import settings
+from common.models import Dataset
 
 # i18n
 from django.utils.translation import gettext_lazy as _
@@ -20,36 +19,14 @@ from .constants import (
     VELOCITY_DIGITS,
     PRESSURE_PRECISION,
     PRESSURE_DIGITS,
-    TELEMETRY_PATH,
 )
 
 
-class TelemetryDataset(models.Model):
-    name = models.CharField(
-        max_length=200,
-        verbose_name=_('Name'),
-    )
-    data = models.FileField(
-        upload_to=TELEMETRY_PATH,
-        verbose_name=_('Raw data'),
-    )
-    created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        related_name='created_telemetry_datasets',
-        on_delete=models.PROTECT,  # either way, django discourages user deletion
-        verbose_name=_('Created by'),
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name=_('Created at'),
-    )
+class TelemetryDataset(Dataset, models.Model):
 
     class Meta:
         verbose_name = _('Telemetry dataset')
         verbose_name_plural = _('Telemetry datasets')
-
-    def __str__(self):
-        return self.name
 
 
 class TelemetryDatapoint(models.Model):
