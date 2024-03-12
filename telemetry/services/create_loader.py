@@ -10,4 +10,4 @@ from utils.data_import.abstract.loader import AbstractLoader
 
 def create_loader(reader: AbstractReader, dataset: TelemetryDataset) -> AbstractLoader:
     # TODO: coupled with TelemetryLoader
-    return TelemetryLoader(reader, dataset)
+    return TelemetryLoader(reader=reader, dataset=dataset)
