@@ -157,6 +157,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -180,6 +181,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django_extensions',
     'import_export',
+    'django_htmx',
     'flight_analysis',
     # ----------------------------
     'users',

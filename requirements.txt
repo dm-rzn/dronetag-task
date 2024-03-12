@@ -7,3 +7,4 @@ environs
 django-import-export
 python-dateutil
 tablib
+django-htmx
