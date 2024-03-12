@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <form class="login-form" action="{% url 'users:login' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <h2 style="text-align:center">{% translate 'Login' %}</h2>
+            <input type="text" name="username" placeholder="{% translate 'Username' %}" required>
+            <input type="password" name="password" placeholder="{% translate 'Password' %}" required>
+            <input type="submit" value="{% translate 'Login' %}">
+        </div>
+    </form>
+{% endblock %}
