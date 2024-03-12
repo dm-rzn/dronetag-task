@@ -1,8 +1,7 @@
 # models
 from django.db import models
 
-# conf
-from django.conf import settings
+from common.models import Dataset
 
 # i18n
 from django.utils.translation import gettext_lazy as _
@@ -14,36 +13,14 @@ from .constants import (
     BATTERY_PRECISION,
     CELL_ID_LENGTH,
     TAC_LENGTH,
-    STATUS_PATH,
 )
 
 
-class StatusDataset(models.Model):
-    name = models.CharField(
-        max_length=200,
-        verbose_name=_('Name'),
-    )
-    data = models.FileField(
-        upload_to=STATUS_PATH,
-        verbose_name=_('Raw data'),
-    )
-    created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        related_name='created_status_datasets',
-        on_delete=models.PROTECT,  # either way, django discourages user deletion
-        verbose_name=_('Created by'),
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name=_('Created at'),
-    )
+class StatusDataset(Dataset, models.Model):
 
     class Meta:
         verbose_name = _('Status dataset')
         verbose_name_plural = _('Status datasets')
-
-    def __str__(self):
-        return self.name
 
 
 class StatusDatapoint(models.Model):
