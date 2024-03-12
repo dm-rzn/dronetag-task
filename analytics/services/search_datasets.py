@@ -11,4 +11,7 @@ from analytics.models import (
 
 def search_datasets(queryset: QuerySet[FlightAnalytics], term: str) -> QuerySet[FlightAnalytics]:
     # TODO: inneficient and simplistic
-    return queryset.filter(name__icontains=term)
+    if term is not None and term.strip():
+        return queryset.filter(name__icontains=term)
+    else:
+        return queryset

@@ -14,6 +14,7 @@ urlpatterns = [
     path('-/health-checks/readiness', lambda request: HttpResponse()),
     path('-/health-checks/liveness', lambda request: HttpResponse()),
     path('', include('users.urls', namespace='users')),
+    path('datasets/', include('analytics.urls', namespace='analytics')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

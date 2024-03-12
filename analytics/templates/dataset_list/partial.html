@@ -1,0 +1,17 @@
+{% load i18n %}
+
+<table id="datasets" class="w3-table-all w3-hoverable w3-margin-top">
+    <tr>
+      <th style="width:60%">{% translate 'Name' %}</th>
+      <th style="width:20%">{% translate 'Created by' %}</th>
+      <th style="width:20%">{% translate 'Created at' %}</th>
+    </tr>
+    {% for dataset in datasets %}
+        <tr>
+        <td>{{ dataset.name }}</td>
+        <td>{{ dataset.created_by.name }}</td>
+        <td>{{ dataset.created_at|date:"r" }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% comment %} TODO: pagination {% endcomment %}
