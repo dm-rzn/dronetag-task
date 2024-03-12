@@ -36,10 +36,13 @@ class TelemetryDatapointResource(resources.ModelResource):
         model = TelemetryDatapoint
         exclude = ['dataset']
 
-    def __init__(self, user, dataset=None):
+    def __init__(self, user=None, dataset=None):
         super().__init__()
-        self.user = user
         self.telemetry_dataset = dataset
+        if dataset is not None:
+            self.user = dataset.created_by
+        else:
+            self.user = user
 
     def before_import(self, dataset, using_transactions, dry_run, **kwargs):
         # for dry run it is necessary to create dataset for the validation to pass
