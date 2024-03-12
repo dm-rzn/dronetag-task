@@ -6,11 +6,12 @@ from import_export.fields import Field
 from utils.data_import.widgets import DateTimeUtilWidget
 
 # services
-from telemetry.services import create_dry_import_dataset
+from utils.data_import.services import create_dry_import_dataset
 
 # model
 from .models import (
     TelemetryDatapoint,
+    TelemetryDataset,
 )
 
 
@@ -49,7 +50,7 @@ class TelemetryDatapointResource(resources.ModelResource):
     def before_import(self, dataset, using_transactions, dry_run, **kwargs):
         # for dry run it is necessary to create dataset for the validation to pass
         if dry_run and self.telemetry_dataset is None:
-            self.telemetry_dataset = create_dry_import_dataset(self.user)
+            self.telemetry_dataset = create_dry_import_dataset(self.user, TelemetryDataset)
 
     def before_save_instance(self, instance, using_transactions, dry_run):
         instance.dataset = self.telemetry_dataset

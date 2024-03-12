@@ -5,10 +5,13 @@ from django import forms
 from telemetry.models import TelemetryDataset
 
 # services
-from telemetry.services import (
+from utils.data_import.services import (
     create_reader,
     create_validator,
 )
+
+# resources
+from telemetry.resources import TelemetryDatapointResource
 
 # exceptions
 from django.core.exceptions import ValidationError
@@ -29,7 +32,7 @@ class TelemetryDatasetForm(forms.ModelForm):
         user = self.cleaned_data['created_by']
 
         reader = create_reader(data)
-        validator = create_validator(reader=reader, user=user)
+        validator = create_validator(reader=reader, user=user, resource=TelemetryDatapointResource)
 
         try:
             validator.validate()
