@@ -1,3 +1,3 @@
 from .create_dry_import_dataset import create_dry_import_dataset  # noqa: F401
-from .validate_telemetry_data import validate_telemetry_data  # noqa: F401
-from .validate_uploaded_telemetry_data import validate_uploaded_telemetry_data  # noqa: F401
+from .create_reader import create_reader  # noqa: F401
+from .create_validator import create_validator  # noqa: F401
