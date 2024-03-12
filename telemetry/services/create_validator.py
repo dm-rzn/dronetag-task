@@ -1,6 +1,7 @@
-from telemetry.data_import import (
-    TelemetryValidator,
-)
+from utils.data_import.validators import Validator
+
+# resources
+from telemetry.resources import TelemetryDatapointResource
 
 # typing
 from telemetry.models import TelemetryDataset
@@ -11,4 +12,4 @@ from utils.data_import.abstract.validator import AbstractValidator
 
 def create_validator(reader: AbstractReader, user: User, dataset: TelemetryDataset = None) -> AbstractValidator:
     # TODO: coupled with TelemetryValidator
-    return TelemetryValidator(reader=reader, user=user, dataset=dataset)
+    return Validator(reader=reader, user=user, dataset=dataset, resource=TelemetryDatapointResource)

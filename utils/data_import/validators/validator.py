@@ -1,8 +1,8 @@
 from utils.data_import.abstract.validator import AbstractValidator
 from utils.data_import.abstract.reader import AbstractReader
 
-# resource
-from telemetry.resources import TelemetryDatapointResource
+# django-import-export
+from import_export import resources
 
 # exceptions
 from utils.data_import.exceptions import (
@@ -11,18 +11,16 @@ from utils.data_import.exceptions import (
 )
 
 # typing
-import typing
-
 from users.models import User
-if typing.TYPE_CHECKING:
-    from telemetry.models import TelemetryDataset
+from common.models import Dataset
 
 
-class TelemetryValidator(AbstractValidator):
-    def __init__(self, reader: AbstractReader, dataset: 'TelemetryDataset', user: User):
+class Validator(AbstractValidator):
+    def __init__(self, reader: AbstractReader, dataset: Dataset, user: User, resource: resources.Resource):
         self.reader = reader
         self.dataset = dataset
         self.user = user
+        self.resource = resource
 
     def validate(self):
         '''
@@ -35,7 +33,7 @@ class TelemetryValidator(AbstractValidator):
             # TODO: log
             raise  # explicit re-reaise TODO: or raise as ValidatorException?
 
-        result = TelemetryDatapointResource(self.user).import_data(data, dry_run=True)
+        result = self.resource(self.user).import_data(data, dry_run=True)
         if result.has_errors() or result.has_validation_errors():
             # TODO: log
             raise ValidatorException()  # TODO: include errors, set code, ...

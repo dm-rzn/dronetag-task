@@ -1,6 +1,7 @@
-from telemetry.data_import import (
-    TelemetryLoader,
-)
+from utils.data_import.loaders import Loader
+
+# resources
+from telemetry.resources import TelemetryDatapointResource
 
 # typing
 from telemetry.models import TelemetryDataset
@@ -10,4 +11,4 @@ from utils.data_import.abstract.loader import AbstractLoader
 
 def create_loader(reader: AbstractReader, dataset: TelemetryDataset) -> AbstractLoader:
     # TODO: coupled with TelemetryLoader
-    return TelemetryLoader(reader=reader, dataset=dataset)
+    return Loader(reader=reader, dataset=dataset, resource=TelemetryDatapointResource)

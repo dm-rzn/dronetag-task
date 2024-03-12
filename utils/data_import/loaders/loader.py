@@ -1,8 +1,8 @@
 from utils.data_import.abstract.loader import AbstractLoader
 from utils.data_import.abstract.reader import AbstractReader
 
-# resource
-from telemetry.resources import TelemetryDatapointResource
+# django-import-export
+from import_export import resources
 
 # exceptions
 from utils.data_import.exceptions import (
@@ -11,16 +11,14 @@ from utils.data_import.exceptions import (
 )
 
 # typing
-import typing
-
-if typing.TYPE_CHECKING:
-    from telemetry.models import TelemetryDataset
+from common.models import Dataset
 
 
-class TelemetryLoader(AbstractLoader):
-    def __init__(self, reader: AbstractReader, dataset: 'TelemetryDataset'):
+class Loader(AbstractLoader):
+    def __init__(self, reader: AbstractReader, dataset: Dataset, resource: resources.Resource):
         self.reader = reader
         self.dataset = dataset
+        self.resource = resource
 
     def load(self):
         '''
@@ -34,7 +32,7 @@ class TelemetryLoader(AbstractLoader):
             raise  # explicit re-reaise TODO: or raise as ValidatorException?
 
         try:
-            TelemetryDatapointResource(dataset=self.dataset).import_data(data)
+            self.resource(dataset=self.dataset).import_data(data)
         except Exception:
             # TODO: log
             raise LoaderException()  # TODO: report

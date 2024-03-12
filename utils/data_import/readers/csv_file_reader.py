@@ -8,7 +8,7 @@ from tablib import Dataset
 from django.core.files.base import File
 
 
-class TelemetryCSVFileReader(AbstractReader):
+class CSVFileReader(AbstractReader):
     def __init__(self, file: File):
         self.path = file.path
 
