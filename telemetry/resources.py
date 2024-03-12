@@ -45,7 +45,6 @@ class TelemetryDatapointResource(resources.ModelResource):
         # for dry run it is necessary to create dataset for the validation to pass
         if dry_run and self.telemetry_dataset is None:
             self.telemetry_dataset = create_dry_import_dataset(self.user)
-            print(self.telemetry_dataset)
 
     def before_save_instance(self, instance, using_transactions, dry_run):
         instance.dataset = self.telemetry_dataset
