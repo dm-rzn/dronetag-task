@@ -8,13 +8,17 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 
+def resolve_data_path(instance, filename):
+    return f'{instance._meta.model_name}s/{filename}'
+
+
 class Dataset(models.Model):
     name = models.CharField(
         max_length=200,
         verbose_name=_('Name'),
     )
     data = models.FileField(
-        upload_to='%(class)s',
+        upload_to=resolve_data_path,
         verbose_name=_('Raw data'),
     )
     created_by = models.ForeignKey(
