@@ -38,7 +38,9 @@ class TelemetryDatapointResource(resources.ModelResource):
 
     def __init__(self, user=None, dataset=None):
         super().__init__()
+
         self.telemetry_dataset = dataset
+
         if dataset is not None:
             self.user = dataset.created_by
         else:
