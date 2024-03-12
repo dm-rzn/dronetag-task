@@ -1,6 +1,3 @@
-# decorators
-from django.views.decorators.http import require_POST
-
 # shortcuts
 from django.shortcuts import (
     redirect,
