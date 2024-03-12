@@ -6,7 +6,6 @@ from telemetry.models import TelemetryDataset
 
 # services
 from telemetry.services import (
-    create_dry_import_dataset,
     create_reader,
     create_validator,
 )
@@ -30,10 +29,11 @@ class TelemetryDatasetForm(forms.ModelForm):
         user = self.cleaned_data['created_by']
 
         reader = create_reader(data)
-        fake_dataset = create_dry_import_dataset(user)
-        validator = create_validator(reader=reader, dataset=fake_dataset)
+        validator = create_validator(reader=reader, user=user)
 
         try:
             validator.validate()
         except (ReaderException, ValidatorException):
             raise ValidationError('TODO')  # TODO: set message and code
+
+        return data
