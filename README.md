@@ -9,6 +9,7 @@ User `admin` with password `admin` is automatically created.
 
 ## TODO
 - [ ] flight analytics dataset list view
+- [ ] flight analytics dataset create view
 - [ ] flight analytics dataset detail view (charts using chart.js)
 - [ ] JSON REST API using Django ninja
 - [ ] Logging
