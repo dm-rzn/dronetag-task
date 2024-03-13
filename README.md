@@ -1,8 +1,9 @@
 # dronetag-assignment
 
 ## How to run
-1. `docker compose -f docker-compose.local.yml build`
-2. `docker compose -f docker-compose.local.yml up -d`
+1.  copy and rename `.env.example` as `.env` (and change values as desired)
+2. `docker compose -f docker-compose.local.yml build`
+3. `docker compose -f docker-compose.local.yml up -d`
 
 User `admin` with password `admin` is automatically created.
 
