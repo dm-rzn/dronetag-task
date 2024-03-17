@@ -29,10 +29,7 @@ def save_dataset(dataset: Dataset, resource: resources.Resource) -> Dataset:
     '''
     reader = create_reader(dataset.data)
     loader = create_loader(reader=reader, dataset=dataset, resource=resource)
-    try:
-        loader.load()
-    except (ReaderException, LoaderException) as e:
-        logger.error(f'save_dataset - { dataset = } - { resource = } - load failed - {e}')
-        raise
+
+    loader.load()
 
     return dataset
