@@ -14,6 +14,11 @@ from utils.data_import.exceptions import (
 from users.models import User
 from common.models import Dataset
 
+# logging
+import logging
+
+logger = logging.getLogger('django')
+
 
 class Validator(AbstractValidator):
     def __init__(self, reader: AbstractReader, dataset: Dataset, user: User, resource: resources.Resource):
@@ -29,11 +34,11 @@ class Validator(AbstractValidator):
         '''
         try:
             data = self.reader.read()
-        except ReaderException:
-            # TODO: log
-            raise  # explicit re-reaise TODO: or raise as ValidatorException?
+        except ReaderException as e:
+            logger.error(f'Validator - reader failed - {e}')
+            raise
 
         result = self.resource(self.user).import_data(data, dry_run=True)
         if result.has_errors() or result.has_validation_errors():
-            # TODO: log
-            raise ValidatorException()  # TODO: include errors, set code, ...
+            logger.error('Validator - validation failed')  # TODO: include errors
+            raise ValidatorException()
