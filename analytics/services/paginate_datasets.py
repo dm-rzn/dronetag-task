@@ -10,7 +10,7 @@ from django.core.paginator import (
 
 # models
 from analytics.models import (
-    FlightAnalytics,
+    FlightAnalyticsDataset,
 )
 
 
@@ -19,11 +19,11 @@ MAX_PER_PAGE = 60
 
 
 def paginate_datasets(
-    queryset: QuerySet[FlightAnalytics],
+    queryset: QuerySet[FlightAnalyticsDataset],
     page_number: int = 1,
     per_page: int = DEFAULT_PER_PAGE
 ) -> tuple[
-    QuerySet[FlightAnalytics],
+    QuerySet[FlightAnalyticsDataset],
     int,
     list[int],
 ]:

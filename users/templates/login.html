@@ -5,10 +5,10 @@
     <div class="w3-container w3-card-4">
         <form class="w3-container w3-display-middle" action="{% url 'users:login' %}" method="post">
             {% csrf_token %}
-                <h2 style="text-align:center">{% translate 'Login' %}</h2>
-                <input class="w3-input w3-margin" type="text" name="username" placeholder="{% translate 'Username' %}" required>
-                <input class="w3-input w3-margin" type="password" name="password" placeholder="{% translate 'Password' %}" required>
-                <button class="w3-button w3-block w3-teal w3-round-xxlarge w3-margin">{% translate 'Login' %}</button>
+            <h2 style="text-align:center">{% translate 'Login' %}</h2>
+            <input class="w3-input w3-margin" type="text" name="username" placeholder="{% translate 'Username' %}" required>
+            <input class="w3-input w3-margin" type="password" name="password" placeholder="{% translate 'Password' %}" required>
+            <button class="w3-button w3-block w3-teal w3-round-xxlarge w3-margin">{% translate 'Login' %}</button>
         </form>
     </div>
 {% endblock %}

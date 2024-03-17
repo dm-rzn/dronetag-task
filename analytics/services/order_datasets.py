@@ -5,12 +5,12 @@ from django.db.models import (
 
 # models
 from analytics.models import (
-    FlightAnalytics,
+    FlightAnalyticsDataset,
 )
 
 
 def order_datasets(
-    queryset: QuerySet[FlightAnalytics],
+    queryset: QuerySet[FlightAnalyticsDataset],
     order_by_fields: tuple[str] = ('-created_at', )
-) -> QuerySet[FlightAnalytics]:
+) -> QuerySet[FlightAnalyticsDataset]:
     return queryset.order_by(*order_by_fields)
