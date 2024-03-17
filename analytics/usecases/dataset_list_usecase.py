@@ -5,7 +5,7 @@ from django.db.models import (
 
 # models
 from analytics.models import (
-    FlightAnalytics,
+    FlightAnalyticsDataset,
 )
 
 # services
@@ -17,11 +17,11 @@ from analytics.services import (
 
 
 def dataset_list_usecase(page: int, q: str) -> tuple[
-    QuerySet[FlightAnalytics],
+    QuerySet[FlightAnalyticsDataset],
     int,
     list[int],
 ]:
-    queryset = FlightAnalytics.objects.select_related('created_by')
+    queryset = FlightAnalyticsDataset.objects.select_related('created_by')
 
     queryset = search_datasets(queryset, term=q)
     queryset = order_datasets(queryset, order_by_fields=('-created_at', ))  # TODO: make this changeable
