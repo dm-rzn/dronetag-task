@@ -3,3 +3,4 @@ from .create_loader import create_loader  # noqa: F401
 from .create_reader import create_reader  # noqa: F401
 from .create_validator import create_validator  # noqa: F401
 from .save_dataset import save_dataset  # noqa: F401
+from .validate_dataset import validate_dataset  # noqa: F401
