@@ -7,12 +7,6 @@ from utils.data_import.services import (
 # resources
 from import_export import resources
 
-# exceptions
-from utils.data_import.exceptions import (
-    ReaderException,
-    LoaderException,
-)
-
 # typing
 from common.models import Dataset
 
