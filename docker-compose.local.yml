@@ -8,6 +8,11 @@ services:
       - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
 
   app:
     container_name: dronetag
@@ -25,7 +30,8 @@ services:
      - media_volume:/app/external_storage/media
      - logs:/app/external_storage/logs
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   static_volume:
