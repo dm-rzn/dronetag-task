@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="w3-container w3-card-4">
+        <form id="form" class="w3-container w3-display-middle"
+            hx-encoding="multipart/form-data"
+            hx-post="{% url 'analytics:datasets' %}"
+        >
+            {% csrf_token %}
+            <h2 style="text-align:center">{% translate 'New dataset' %}</h2>
+            <p class="w3-margin">
+                <label class="w3-text-teal">{% translate 'Name' %}</label>
+                <input class="w3-input" type="text" name="name">
+            </p>
+            <p class="w3-margin">
+                <label class="w3-text-teal">{% translate 'Telemetry' %}</label>
+                <input class="w3-input" type="file" name="telemetry" required>
+            </p>
+            <p class="w3-margin">
+                <label class="w3-text-teal">{% translate 'Status' %}</label>
+                <input class="w3-input" type="file" name="status" required>
+            </p>
+            <button class="w3-button w3-block w3-teal w3-round-xxlarge w3-margin">{% translate 'Save' %}</button>
+            <progress id='progress' value='0' max='100'></progress>
+        </form>
+    </div>
+    <script>
+        htmx.on('#form', 'htmx:xhr:progress', function(evt) {
+            htmx.find('#progress').setAttribute('value', evt.detail.loaded/evt.detail.total * 100)
+        });
+    </script>
+{% endblock %}
