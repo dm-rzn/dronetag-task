@@ -1,8 +1,5 @@
 # django-import-export
-from import_export import (
-    resources,
-    widgets,
-)
+from import_export import resources
 from import_export.fields import Field
 
 # widgets
@@ -31,7 +28,7 @@ class StatusDatapointResource(resources.ModelResource):
     snr_db = Field(attribute='snr_db', column_name='snr')
     tac = Field(attribute='tac', column_name='tac')
     visible_satellites_num = Field(attribute='visible_satellites_num', column_name='satellites')
-    is_charging = Field(attribute='is_charging', column_name='charging', widget=widgets.BooleanWidget())
+    is_charging = Field(attribute='is_charging', column_name='charging')
 
     class Meta:
         model = StatusDatapoint
