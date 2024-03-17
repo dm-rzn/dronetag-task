@@ -14,18 +14,25 @@ from utils.data_import.exceptions import (
 )
 
 # typing
-from django import forms
 from common.models import Dataset
 
+# loging
+import logging
 
-def save_dataset(form: forms.ModelForm, resource: resources.Resource) -> Dataset:
-    dataset = form.save()
+logger = logging.getLogger('django')
+
+
+def save_dataset(dataset: Dataset, resource: resources.Resource) -> Dataset:
+    '''
+    :raises: ReaderException
+    :raises: LoaderException
+    '''
     reader = create_reader(dataset.data)
     loader = create_loader(reader=reader, dataset=dataset, resource=resource)
     try:
         loader.load()
-    except (ReaderException, LoaderException):
-        # TODO: log
-        ...  # TODO: handle
+    except (ReaderException, LoaderException) as e:
+        logger.error(f'save_dataset - { dataset = } - { resource = } - load failed - {e}')
+        raise
 
     return dataset
