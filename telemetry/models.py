@@ -1,5 +1,6 @@
 # models
 from django.db import models
+from django.db.models import F
 
 from common.models import Dataset
 
@@ -46,6 +47,11 @@ class TelemetryDatapoint(models.Model):
     time_received = models.DateTimeField(
         verbose_name=_('Time received'),
         help_text=_('Time when this message was received on server.'),
+    )
+    latency = models.GeneratedField(
+        expression=F('time_received') - F('time'),
+        output_field=models.DurationField(),
+        db_persist=True,
     )
     latitude = models.DecimalField(
         max_digits=LATITUDE_DIGITS,
