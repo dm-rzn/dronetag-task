@@ -1,0 +1,37 @@
+{% extends 'charts/line.html' %}
+
+{% block plugins %}
+    annotation: {
+        common: {
+            drawTime: 'beforeDraw'
+        },
+        annotations: {
+            excellent: {
+                type: 'box',
+                backgroundColor: 'rgba(60, 179, 113, 0.2)',
+                borderWidth: 0,
+                yMin: -80,
+            },
+            good: {
+                type: 'box',
+                backgroundColor: 'rgba(255, 255, 0, 0.2)',
+                borderWidth: 0,
+                yMax: -80,
+                yMin: -90,
+            },
+            poor: {
+                type: 'box',
+                backgroundColor: 'rgba(255, 165, 0, 0.2)',
+                borderWidth: 0,
+                yMax: -90,
+                yMin: -100,
+            },
+            bad: {
+                type: 'box',
+                backgroundColor: 'rgba(255, 99, 71, 0.2)',
+                borderWidth: 0,
+                yMax: -100,
+            },
+        }
+    }
+{% endblock %}

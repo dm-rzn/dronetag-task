@@ -3,13 +3,12 @@ from .latency import LatencyChart
 # i18n
 from django.utils.translation import gettext as _
 
+# typing
+from django.db.models import QuerySet
 
-class StatusLatency(LatencyChart):
-    _title = _('Status Latency')
 
-    def _data(self):
-        return list(
-            self.dataset.statuses.datapoints
-            .order_by('time')
-            .values_list('time', 'latency')
-        )
+class StatusLatencyChart(LatencyChart):
+    title = _('Status Latency')
+
+    def querset(self) -> QuerySet:
+        return self.dataset.statuses.datapoints

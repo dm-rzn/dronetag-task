@@ -7,7 +7,8 @@ from typing import Any
 
 
 class BaseChart:
-    _template = ...  # use class attribute for template
+    template: str = ''
+    title: str = ''
 
     def __init__(self, dataset: FlightAnalyticsDataset):
         self.dataset = dataset
@@ -16,4 +17,4 @@ class BaseChart:
         return {}
 
     def render(self, request):
-        return get_template(self._template).render(context=self._context(), request=request).strip()
+        return get_template(self.template).render(context=self._context(), request=request).strip()

@@ -1,0 +1,50 @@
+{% load i18n %}
+
+<script>
+const labels = {{ labels|safe }};
+const data = {
+  labels: labels,
+  datasets: [
+    {% for key, set in sets.items %}
+        {
+            label: "{{ key }}",
+            data: [{% for x in set %}{{ x|floatformat:"0"|default_if_none:"NaN" }}, {% endfor %}],
+            fill: false,
+            tension: 0.4
+        },
+    {% endfor %}
+  ]
+};
+
+new Chart(
+    document.getElementById('chart'),
+    {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            interaction: {
+                intersect: false,
+            },
+            scales: {
+                x: {
+                    display: true,
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "{{ y_label }}",
+                    },
+                }
+            },
+            plugins: {
+                colors: {
+                    enabled: true
+                },
+                {% block plugins %}{% endblock %}
+            }
+        },
+    }
+)
+</script>
