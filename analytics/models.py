@@ -4,7 +4,7 @@ from django.db import models
 # urls
 from django.urls import reverse
 
-from common.models import Base
+from common.models import BaseDataset
 from statuses.models import StatusDataset
 from telemetry.models import TelemetryDataset
 
@@ -12,7 +12,7 @@ from telemetry.models import TelemetryDataset
 from django.utils.translation import gettext_lazy as _
 
 
-class FlightAnalyticsDataset(Base, models.Model):
+class FlightAnalyticsDataset(BaseDataset, models.Model):
     telemetry = models.ForeignKey(
         TelemetryDataset,
         on_delete=models.PROTECT,

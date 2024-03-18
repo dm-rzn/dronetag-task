@@ -1,8 +1,10 @@
 # models
 from django.db import models
-from django.db.models import F
 
-from common.models import Dataset
+from common.models import (
+    Dataset,
+    Datapoint,
+)
 
 # i18n
 from django.utils.translation import gettext_lazy as _
@@ -24,7 +26,7 @@ class StatusDataset(Dataset, models.Model):
         verbose_name_plural = _('Status datasets')
 
 
-class StatusDatapoint(models.Model):
+class StatusDatapoint(Datapoint, models.Model):
     dataset = models.ForeignKey(
         StatusDataset,
         on_delete=models.CASCADE,
@@ -37,19 +39,6 @@ class StatusDatapoint(models.Model):
     flight_id = models.CharField(
         max_length=FLIGHT_ID_LENGTH,
         verbose_name=_('Flight ID'),
-    )
-    time = models.DateTimeField(
-        verbose_name=_('Time'),
-        help_text=_('Datapoint time'),
-    )
-    time_received = models.DateTimeField(
-        verbose_name=_('Time received'),
-        help_text=_('Time when this message was received on server.'),
-    )
-    latency = models.GeneratedField(
-        expression=F('time_received') - F('time'),
-        output_field=models.DurationField(),
-        db_persist=True,
     )
     battery_v = models.DecimalField(
         max_digits=BATTERY_DIGITS,
