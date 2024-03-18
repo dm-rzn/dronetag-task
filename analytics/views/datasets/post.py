@@ -11,6 +11,9 @@ from analytics.forms import DatasetCreateForm
 from telemetry.exceptions import TelemetryException
 from statuses.exceptions import StatusException
 
+# services
+from common.services import update_querydict_with_user
+
 # usecases
 from analytics.usecases import dataset_create_usecase
 
@@ -19,11 +22,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 def _post(request):
+    querydict = update_querydict_with_user(request.POST, request.user, 'created_by')
     form = DatasetCreateForm(
-        {
-            **request.POST,
-            'created_by': request.user,
-        },
+        data=querydict,
         files=request.FILES,
     )
 
