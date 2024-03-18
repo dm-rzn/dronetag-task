@@ -13,7 +13,7 @@ class BaseChart:
         self.dataset = dataset
 
     def _context(self) -> dict[str, Any]:
-        return
+        return {}
 
     def render(self, request):
         return get_template(self._template).render(context=self._context(), request=request).strip()
