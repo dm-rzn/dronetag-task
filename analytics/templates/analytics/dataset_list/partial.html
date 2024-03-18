@@ -9,7 +9,7 @@
     {% for dataset in datasets %}
         <tr>
         <td>{{ dataset.name }}</td>
-        <td>{{ dataset.created_by.name }}</td>
+        <td>{{ dataset.created_by.username }}</td>
         <td>{{ dataset.created_at|date:"r" }}</td>
         </tr>
     {% endfor %}
