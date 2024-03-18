@@ -1,5 +1,6 @@
 # models
 from django.db import models
+from django.db.models import F
 
 from common.models import Dataset
 
@@ -44,6 +45,11 @@ class StatusDatapoint(models.Model):
     time_received = models.DateTimeField(
         verbose_name=_('Time received'),
         help_text=_('Time when this message was received on server.'),
+    )
+    latency = models.GeneratedField(
+        expression=F('time_received') - F('time'),
+        output_field=models.DurationField(),
+        db_persist=True,
     )
     battery_v = models.DecimalField(
         max_digits=BATTERY_DIGITS,
