@@ -31,7 +31,7 @@ def _post_login_view(request):
             password=form.cleaned_data['password'],
         )
     ):
-        return redirect('analytics:list')
+        return redirect('analytics:datasets')
 
     return render(request, 'login.html', {'form': form})
 

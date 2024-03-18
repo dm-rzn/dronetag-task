@@ -3,10 +3,6 @@ from django.shortcuts import (
     render,
 )
 
-# decorators
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_GET
-
 # forms
 from analytics.forms import (
     DatasetListForm,
@@ -21,12 +17,10 @@ from analytics.usecases import (
 from common.services import get_template
 
 
-@require_GET
-@login_required
-def dataset_list(request):
+def _get(request):
     form = DatasetListForm(request.GET)
     if not form.is_valid():
-        ...
+        ...  # TODO
 
     datasets, page, page_range = dataset_list_usecase(
         page=form.cleaned_data['page'] or 1,
@@ -35,7 +29,7 @@ def dataset_list(request):
 
     return render(
         request,
-        get_template(request, 'dataset_list'),
+        get_template(request, 'analytics/dataset_list'),
         context={
             'datasets': datasets,
             'page': page,

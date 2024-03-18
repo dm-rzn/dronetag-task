@@ -26,6 +26,14 @@ from users.models import User
 
 @transaction.atomic
 def dataset_create_usecase(name: str, telemetry_data: File, status_data: File, user: User) -> FlightAnalyticsDataset:
+    '''
+    :raises: TelemetryReaderException
+    :raises: TelemetryValidatorException
+    :raises: TelemetryLoaderException
+    :raises: StatusReaderException
+    :raises: StatusValidatorException
+    :raises: StatusLoaderException
+    '''
     validate_telemetry_dataset(telemetry_data, user)
     validate_status_dataset(status_data, user)
 

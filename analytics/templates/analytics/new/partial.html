@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<form id="form" class="w3-container w3-display-middle"
+    hx-encoding="multipart/form-data"
+    hx-post="{% url 'analytics:datasets' %}"
+    hx-target="#form"
+    hx-swap="outerHTML"
+>
+    {% csrf_token %}
+    <h2 style="text-align:center">{% translate 'New dataset' %}</h2>
+    <p class="w3-margin">
+        <label class="w3-text-teal">{% translate 'Name' %}</label>
+        <input class="w3-input" type="text" name="name">
+    </p>
+    <p class="w3-margin">
+        <label class="w3-text-teal">{% translate 'Telemetry' %}</label>
+        <input class="w3-input" type="file" name="telemetry" required>
+        {% if telemetry_error %}<p class="w3-margin w3-text-red">{{ telemetry_error }}</p>{% endif %}
+    </p>
+    <p class="w3-margin">
+        <label class="w3-text-teal">{% translate 'Status' %}</label>
+        <input class="w3-input" type="file" name="status" required>
+        {% if status_error %}<p class="w3-margin w3-text-red">{{ status_error }}</p>{% endif %}
+    </p>
+    <button class="w3-button w3-block w3-teal w3-round-xxlarge w3-margin">{% translate 'Save' %}</button>
+</form>
