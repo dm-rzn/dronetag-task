@@ -1,9 +1,8 @@
 {% load i18n %}
 
 <script>
-const labels = {{ labels|safe }};
-const data = {
-  labels: labels,
+var data = {
+  labels: {{ labels|safe }},
   datasets: [
     {% for key, set in sets.items %}
         {
@@ -16,7 +15,7 @@ const data = {
   ]
 };
 
-new Chart(
+var chart = new Chart(
     document.getElementById('chart'),
     {
         type: 'line',
