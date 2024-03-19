@@ -10,5 +10,5 @@ from django.db.models import QuerySet
 class StatusLatencyChart(LatencyChart):
     title = _('Status Latency')
 
-    def querset(self) -> QuerySet:
+    def queryset(self) -> QuerySet:
         return self.dataset.statuses.datapoints
