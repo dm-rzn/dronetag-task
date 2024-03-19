@@ -1,0 +1,8 @@
+<select id="chart-select" name="chart" class="w3-select"
+        hx-get="{% url 'analytics:dataset-detail' id=dataset.id %}" hx-target="#chart-definition" hx-swap-oob="true"
+        hx-push-url="true" hx-on::before-request="chart.destroy();"
+>
+    {% for value, name in choices %}
+        <option value="{{ value }}"{% if value == selected_chart %} selected{% endif %}>{{ name }}</option>
+    {% endfor %}
+</select>
