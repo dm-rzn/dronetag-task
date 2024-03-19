@@ -180,6 +180,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django_extensions',
+    'django_cleanup.apps.CleanupConfig',
     'import_export',
     'django_htmx',
     'flight_analysis',
