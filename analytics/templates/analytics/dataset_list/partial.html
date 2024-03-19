@@ -8,7 +8,7 @@
     </tr>
     {% for dataset in datasets %}
         <tr>
-        <td>{{ dataset.name }}</td>
+        <td><a href="{% url 'analytics:dataset-detail' id=dataset.id %}">{{ dataset.name }}</a></td>
         <td>{{ dataset.created_by.username }}</td>
         <td>{{ dataset.created_at|date:"r" }}</td>
         </tr>
