@@ -1,4 +1,4 @@
-<select id="chart-select" name="chart" class="w3-select"
+<select id="chart-select" name="chart" class="w3-select w3-display-middle" style="width: 50%"
         hx-get="{% url 'analytics:dataset-detail' id=dataset.id %}" hx-target="#chart-definition" hx-swap-oob="true"
         hx-push-url="true" hx-on::before-request="chart.destroy();"
 >
