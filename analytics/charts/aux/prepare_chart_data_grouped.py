@@ -13,7 +13,7 @@ def prepare_chart_data_grouped(values: list[tuple[Any, Any, Any]]) -> tuple[list
         if group in groups:
             group_datapoints = groups[group]
         else:
-            group_datapoints = [None] * len(labels)
+            group_datapoints = [None] * (len(labels) - 1)
             groups[group] = group_datapoints
 
         group_datapoints.append(y)

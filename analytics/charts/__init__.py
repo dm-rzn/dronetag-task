@@ -1,3 +1,4 @@
+from .enum import ChartEnum  # noqa: F401
 from .status_latency import StatusLatencyChart  # noqa: F401
 from .telemetry_latency import TelemetryLatencyChart  # noqa: F401
 from .rsrp import RSRPChart  # noqa: F401

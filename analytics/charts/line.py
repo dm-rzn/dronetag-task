@@ -2,7 +2,7 @@
 from .base import BaseChart
 
 # services
-from analytics.services import (
+from .aux import (
     prepare_chart_data,
     prepare_chart_data_grouped,
 )

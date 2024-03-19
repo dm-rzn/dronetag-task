@@ -1,14 +1,13 @@
 {% load i18n %}
 
 <script>
-const labels = {{ labels|safe }};
-const data = {
-  labels: labels,
+var data = {
+  labels: {{ labels|safe }},
   datasets: [
     {% for key, set in sets.items %}
         {
             label: "{{ key }}",
-            data: [{% for x in set %}{{ x|floatformat:"0"|default_if_none:"NaN" }}, {% endfor %}],
+            data: [{% for x in set %}{{ x|default_if_none:"NaN" }}, {% endfor %}],
             fill: false,
             tension: 0.4
         },
@@ -16,7 +15,7 @@ const data = {
   ]
 };
 
-new Chart(
+var chart = new Chart(
     document.getElementById('chart'),
     {
         type: 'line',

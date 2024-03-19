@@ -30,4 +30,4 @@ class FlightAnalyticsDataset(BaseDataset, models.Model):
         verbose_name = verbose_name_plural = _('Flight analytics')
 
     def get_absolute_url(self):
-        return ''  # TODO
+        return reverse('analytics:dataset-detail', id=self.id)
