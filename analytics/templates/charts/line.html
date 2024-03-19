@@ -7,7 +7,7 @@ var data = {
     {% for key, set in sets.items %}
         {
             label: "{{ key }}",
-            data: [{% for x in set %}{{ x|floatformat:"0"|default_if_none:"NaN" }}, {% endfor %}],
+            data: [{% for x in set %}{{ x|default_if_none:"NaN" }}, {% endfor %}],
             fill: false,
             tension: 0.4
         },
