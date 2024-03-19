@@ -1,8 +1,8 @@
 # shortcuts
 from django.shortcuts import (
     render,
-    redirect,
 )
+from django_htmx.http import HttpResponseClientRedirect
 
 # forms
 from analytics.forms import DatasetCreateForm
@@ -60,4 +60,4 @@ def _post(request):
             }
         )
 
-    return redirect(to=obj)
+    return HttpResponseClientRedirect(obj.get_absolute_url())
