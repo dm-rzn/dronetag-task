@@ -51,4 +51,5 @@ class StatusDatapointResource(resources.ModelResource):
             self.status_dataset = create_dry_import_dataset(self.user, StatusDataset)
 
     def before_save_instance(self, instance, using_transactions, dry_run):
+        instance.latency = instance.time_received - instance.time
         instance.dataset = self.status_dataset

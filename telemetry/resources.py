@@ -53,4 +53,5 @@ class TelemetryDatapointResource(resources.ModelResource):
             self.telemetry_dataset = create_dry_import_dataset(self.user, TelemetryDataset)
 
     def before_save_instance(self, instance, using_transactions, dry_run):
+        instance.latency = instance.time_received - instance.time
         instance.dataset = self.telemetry_dataset
