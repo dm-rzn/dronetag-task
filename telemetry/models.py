@@ -1,7 +1,10 @@
 # models
 from django.db import models
 
-from common.models import Dataset
+from common.models import (
+    Dataset,
+    Datapoint,
+)
 
 # i18n
 from django.utils.translation import gettext_lazy as _
@@ -29,7 +32,7 @@ class TelemetryDataset(Dataset, models.Model):
         verbose_name_plural = _('Telemetry datasets')
 
 
-class TelemetryDatapoint(models.Model):
+class TelemetryDatapoint(Datapoint, models.Model):
     dataset = models.ForeignKey(
         TelemetryDataset,
         on_delete=models.CASCADE,
@@ -38,14 +41,6 @@ class TelemetryDatapoint(models.Model):
     )
     external_id = models.PositiveBigIntegerField(
         verbose_name=_('External ID'),
-    )
-    time = models.DateTimeField(
-        verbose_name=_('Time'),
-        help_text=_('Datapoint time'),
-    )
-    time_received = models.DateTimeField(
-        verbose_name=_('Time received'),
-        help_text=_('Time when this message was received on server.'),
     )
     latitude = models.DecimalField(
         max_digits=LATITUDE_DIGITS,
