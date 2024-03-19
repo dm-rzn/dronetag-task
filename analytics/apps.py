@@ -6,4 +6,4 @@ class AnalyticsConfig(AppConfig):
     name = 'analytics'
 
     def ready(self):
-        from analytics import signals  # noqa: F401
+        from . import signals  # noqa: F401
